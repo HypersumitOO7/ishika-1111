@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffe8f0">
+<title>11:11 — A Little World for Ishika</title>
+<style>
+:root{--pink:#f6a9c4;--rose:#d95f8e;--deep:#9e4268;--cream:#fff8fb;--ink:#633b50;--glass:rgba(255,255,255,.72)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:radial-gradient(circle at 20% 10%,#fff 0,transparent 28%),radial-gradient(circle at 90% 30%,#ffd8e7 0,transparent 32%),linear-gradient(145deg,#fff7fa,#ffe5ef 55%,#fcecf5);overflow-x:hidden}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #a84470;outline-offset:3px}
+#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}.petal{position:absolute;top:-40px;opacity:.6;animation:fall linear infinite;font-size:18px}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.08}}
+.wrap{position:relative;z-index:1;width:min(920px,92vw);margin:auto;padding:26px 0 60px}
+.topline{text-align:center;letter-spacing:.18em;text-transform:uppercase;font:600 11px Arial,sans-serif;color:#b35e82;margin:12px 0 22px}
+h1,h2,h3,p{margin-top:0}h1{font-size:clamp(2.5rem,8vw,5.5rem);line-height:.98;margin-bottom:16px;color:#a84872;font-weight:500}h2{font-size:clamp(2rem,6vw,3.5rem);font-weight:500;color:#a84872;margin-bottom:12px}h3{font-size:1.5rem;font-weight:500;color:#a84872}
+.sub{font-size:clamp(1.05rem,2.8vw,1.35rem);line-height:1.7;max-width:650px;margin:0 auto 25px}
+.panel{background:var(--glass);border:1px solid rgba(255,255,255,.9);border-radius:28px;padding:clamp(22px,5vw,48px);box-shadow:0 18px 55px rgba(168,72,114,.12);backdrop-filter:blur(12px);text-align:center}
+.screen{display:none;animation:appear .65s ease both}.screen.active{display:block}@keyframes appear{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.eyebrow{font:700 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:.2em;color:#b35e82;margin-bottom:16px}
+.heart{font-size:clamp(3rem,10vw,6rem);display:inline-block;filter:drop-shadow(0 8px 12px #f4b0cb);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.countgrid{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:28px 0}.timebox{min-width:78px;padding:14px 12px;border-radius:18px;background:#fff;border:1px solid #f7c6d9;box-shadow:0 8px 20px #e9a9c233}.num{font:700 clamp(1.8rem,5vw,2.6rem) Arial;color:#a84872;display:block}.unit{font:11px Arial;letter-spacing:.12em;text-transform:uppercase;color:#a66a83}
+.btn{border:0;border-radius:999px;padding:14px 25px;background:linear-gradient(135deg,#e989ad,#c95787);color:white;box-shadow:0 9px 22px #c9578738;transition:.2s transform,.2s filter;margin:6px}.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}.btn.secondary{background:#fff;color:#a84872;border:1px solid #f1bfd1;box-shadow:none}.small{font:12px Arial,sans-serif;color:#a66a83;line-height:1.6}
+.hidden{display:none!important}.letter{white-space:pre-line;text-align:left;line-height:1.9;font-size:1.12rem;background:#fff9fc;border:1px solid #f7d5e2;border-radius:20px;padding:22px;margin:20px auto;max-width:680px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:25px 0}.card{border:1px solid #f3c7d8;background:#fff9fc;border-radius:20px;padding:20px;min-height:145px;color:#85445f;box-shadow:0 8px 20px #e9a9c21c;transition:.25s}.card:hover{transform:translateY(-4px)}.card .front{font-size:1.1rem}.card .back{display:none;line-height:1.6}.card.open .front{display:none}.card.open .back{display:block}
+.progress{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:0 0 22px}.dot{width:9px;height:9px;border-radius:50%;background:#efc4d4}.dot.done{background:#c95787}
+.nav{display:flex;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.gift{font-size:90px;display:inline-block;animation:bob 2s infinite}@keyframes bob{50%{transform:translateY(-10px) rotate(4deg)}}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin:20px 0}.photo{background:white;padding:9px 9px 25px;box-shadow:0 8px 22px #9b54701a;transform:rotate(-2deg)}.photo:nth-child(even){transform:rotate(2deg)}.photo img{width:100%;aspect-ratio:1;object-fit:cover;background:#fce3ed}.photo small{display:block;margin-top:9px;color:#9c6380}
+input[type=file]{max-width:100%;font:13px Arial}.musicbar{position:fixed;right:14px;bottom:14px;z-index:5;background:#fff9;border:1px solid #f2c6d8;border-radius:30px;padding:8px 12px;backdrop-filter:blur(8px);font:12px Arial;color:#914766}
+.footer{text-align:center;font:11px Arial;color:#b47b94;margin-top:35px}
+@media(max-width:520px){.wrap{width:94vw;padding-top:14px}.panel{border-radius:22px}.timebox{min-width:67px;padding:11px 8px}.letter{text-align:left}}
+</style>
+</head>
+<body>
+<div id="petals" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="topline">A little world made just for Ishika · 11.11.2026</div>
+
+  <section id="countdown" class="screen active">
+    <div class="panel">
+      <div class="heart">♡</div>
+      <div class="eyebrow">A tiny surprise is waiting</div>
+      <h1>Hey, KucchuPucchu!</h1>
+      <p class="sub">Something special is waiting for you, Ishika.<br>Come back when the clock makes a little wish. ✨</p>
+      <div class="eyebrow">Your surprise unlocks in</div>
+      <div class="countgrid" aria-live="polite">
+        <div class="timebox"><span class="num" id="days">00</span><span class="unit">Days</span></div>
+        <div class="timebox"><span class="num" id="hours">00</span><span class="unit">Hours</span></div>
+        <div class="timebox"><span class="num" id="minutes">00</span><span class="unit">Minutes</span></div>
+        <div class="timebox"><span class="num" id="seconds">00</span><span class="unit">Seconds</span></div>
+      </div>
+      <p class="small">11 November 2026 · 11:11 PM · India time</p>
+      <div id="unlockNotice" class="hidden">
+        <h2>Your little surprise is here! 💗</h2>
+        <button class="btn" onclick="beginJourney()">Let's begin our journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="journey" class="screen">
+    <div class="progress" id="progress"></div>
+    <div class="panel">
+      <section class="chapter active" data-ch="0">
+        <div class="heart">💌</div><div class="eyebrow">Chapter one · A little apology</div>
+        <h2>Before anything else…</h2>
+        <p class="sub">I want to tell you something from my heart.</p>
+        <button class="btn" onclick="reveal('apology')">Open my little message</button>
+        <div id="apology" class="letter hidden"></div>
+      </section>
+      <section class="chapter" data-ch="1">
+        <div class="heart">🌷</div><div class="eyebrow">Chapter two · Just so you know</div>
+        <h2>You are so special</h2>
+        <p class="sub">Tap each little card. I have a few things I want you to remember.</p>
+        <div class="cards" id="compliments"></div>
+        <p class="small">Open every card to continue.</p>
+      </section>
+      <section class="chapter" data-ch="2">
+        <div class="heart">💗</div><div class="eyebrow">Chapter three · One thing I know</div>
+        <h2>I LOVE YOU SO MUCH, ISHIKA!</h2>
+        <p class="sub">More than these little words can ever explain.</p>
+        <button class="btn" onclick="reveal('loveMessage')">Read what is in my heart</button>
+        <div id="loveMessage" class="letter hidden"></div>
+        <div style="font-size:25px;margin-top:12px">♡ ♥ ♡ ♥ ♡</div>
+      </section>
+      <section class="chapter" data-ch="3">
+        <div class="heart">✨</div><div class="eyebrow">Chapter four · My wishes for you</div>
+        <h2>Happiness, always</h2>
+        <p class="sub">I hope life brings you beautiful things, today and every day.</p>
+        <div class="cards" id="wishes"></div>
+        <p class="small">Tap every wish to open it.</p>
+      </section>
+      <section class="chapter" data-ch="4">
+        <div class="gift">🎁</div><div class="eyebrow">The final little surprise</div>
+        <h2>For my KucchuPucchu</h2>
+        <p class="sub">One last thing, made only for you.</p>
+        <button class="btn" onclick="openGift()">Open your gift</button>
+        <div id="finalGift" class="hidden">
+          <div class="heart">💖</div>
+          <h2>Happy 11:11, Ishika!</h2>
+          <div class="letter" id="finalMessage"></div>
+          <button class="btn secondary" onclick="restartJourney()">Replay our little journey</button>
+        </div>
+      </section>
+      <div class="nav">
+        <button class="btn secondary" id="prevBtn" onclick="move(-1)">← Previous</button>
+        <button class="btn" id="nextBtn" onclick="move(1)">Continue →</button>
+      </div>
+    </div>
+  </section>
+  <div class="footer">Made with love, especially for Ishika ♡</div>
+</div>
+
+<div class="musicbar">
+  <button class="btn secondary" style="padding:8px 12px;margin:0" onclick="toggleMusic()" id="musicBtn">♫ Play music</button>
+  <audio id="music" loop></audio>
+</div>
+
+<script>
+/* =========================================================
+   EDIT EVERYTHING HERE — your personal website settings
+   To add music, put a file named "music.mp3" beside index.html
+   To add photos, put image files in a folder named "photos"
+   ========================================================= */
+const CONFIG = {
+  herName: "Ishika",
+  nickname: "KucchuPucchu",
+  unlockISO: "2026-11-11T23:11:00+05:30",
+  // Set true temporarily to preview the surprise before 11:11.
+  // IMPORTANT: change back to false before publishing.
+  previewMode: false,
+
+  apology: `Hey Ishika, my KucchuPucchu…\n\nI'm sorry if I have bothered you, disturbed your peace or annoyed you sometimes without realising it. I never want to make your day heavier.\n\nYou matter so much to me, and I always want to be someone who adds a little happiness to your life. Thank you for being you. ❤️`,
+
+  loveMessage: `I don't always know how to put every feeling into words, but I know this: I love you so much.\n\nYou make ordinary moments feel special. I admire you, I care about you, and I feel lucky to have you in my life.\n\nI hope you never doubt how precious you are to me. ❤️`,
+
+  compliments: [
+    ["Your smile", "I hope you never run out of reasons to smile. Your happiness is beautiful."],
+    ["Your heart", "The person you are is special. Never change the lovely things that make you you."],
+    ["Your strength", "Even on difficult days, I hope you remember how capable and strong you are."],
+    ["Your dreams", "Your ambitions matter. I will always want to see you grow and shine."],
+    ["Your little things", "Even the smallest things about you can make my day better."],
+    ["Simply you", "You don't have to be perfect to be precious. You are already enough."]
+  ],
+
+  wishes: [
+    ["Endless happiness", "May you always have genuine reasons to smile."],
+    ["Every achievement", "May you achieve everything you work and dream for."],
+    ["Beautiful opportunities", "May the right doors open for you at the right time."],
+    ["Peace of mind", "May your heart feel calm, safe and appreciated."],
+    ["Confidence", "May you always believe in your abilities and your worth."],
+    ["A bright future", "May life surprise you with more goodness than you imagined."]
+  ],
+
+  finalMessage: `Happy 11:11, my KucchuPucchu! 💗\n\nI wish you happiness today, tomorrow and forever. I hope you achieve every single thing your heart wishes for, and that you always keep smiling, growing and shining.\n\nNever stop believing in yourself. You deserve beautiful things, lovely opportunities and a life full of happiness.\n\nI love you so, so much, Ishika. Always keep that smile. ❤️`,
+
+  musicFile: "music.mp3"
+};
+
+const $ = id => document.getElementById(id);
+const unlockAt = new Date(CONFIG.unlockISO).getTime();
+let current = 0, musicStarted = false;
+
+function makePetals(){
+  const symbols=["♡","♥","✿","✧","❀"];
+  for(let i=0;i<24;i++){const el=document.createElement("span");el.className="petal";el.textContent=symbols[i%symbols.length];el.style.left=Math.random()*100+"%";el.style.animationDuration=(9+Math.random()*13)+"s";el.style.animationDelay=(-Math.random()*20)+"s";el.style.fontSize=(12+Math.random()*18)+"px";$("petals").appendChild(el)}
+}
+function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active")}
+function tick(){
+  const remaining=unlockAt-Date.now();
+  if(CONFIG.previewMode || remaining<=0){
+    ["days","hours","minutes","seconds"].forEach(id=>$(id).textContent="00");
+    $("unlockNotice").classList.remove("hidden");
+    if(!CONFIG.previewMode){$("countdown").querySelector(".countgrid").classList.add("hidden");$("countdown").querySelector(".small").textContent="It's 11:11 PM in India. Your surprise is ready. 💗"}
+    return;
+  }
+  const d=Math.floor(remaining/86400000),h=Math.floor(remaining%86400000/3600000),m=Math.floor(remaining%3600000/60000),s=Math.floor(remaining%60000/1000);
+  $("days").textContent=String(d).padStart(2,"0");$("hours").textContent=String(h).padStart(2,"0");$("minutes").textContent=String(m).padStart(2,"0");$("seconds").textContent=String(s).padStart(2,"0");
+}
+function beginJourney(){if(!CONFIG.previewMode && Date.now()<unlockAt)return;showScreen("journey");renderChapter()}
+function fillCards(id,items){$(id).innerHTML="";items.forEach(([title,body])=>{const c=document.createElement("button");c.className="card";c.innerHTML=`<span class="front">♡<br><br>${escapeHTML(title)}<br><small>Tap to reveal</small></span><span class="back"><strong>${escapeHTML(title)}</strong><br><br>${escapeHTML(body)}</span>`;c.onclick=()=>{c.classList.toggle("open");updateProgress()};$(id).appendChild(c)})}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function reveal(id){$(id).textContent=CONFIG[id==="apology"?"apology":"loveMessage"];$(id).classList.remove("hidden");}
+function renderChapter(){
+  document.querySelectorAll(".chapter").forEach((c,i)=>c.classList.toggle("active",i===current));
+  $("prevBtn").style.display=current===0?"none":"inline-block";
+  $("nextBtn").style.display=current===4?"none":"inline-block";
+  $("progress").innerHTML=Array.from({length:5},(_,i)=>`<span class="dot ${i<=current?"done":""}"></span>`).join("");
+  updateProgress();
+}
+function updateProgress(){
+  const ch=document.querySelector(`.chapter[data-ch="${current}"]`);
+  let ready=true;
+  if(current===1)ready=[...$("compliments").children].every(c=>c.classList.contains("open"));
+  if(current===3)ready=[...$("wishes").children].every(c=>c.classList.contains("open"));
+  $("nextBtn").disabled=!ready;$("nextBtn").style.opacity=ready?"1":".45";
+  $("nextBtn").textContent=current===3?"Continue to your surprise →":"Continue →";
+}
+function move(dir){if(dir>0 && $("nextBtn").disabled)return;current=Math.max(0,Math.min(4,current+dir));renderChapter();window.scrollTo({top:0,behavior:"smooth"})}
+function openGift(){$("finalGift").classList.remove("hidden");$("finalMessage").textContent=CONFIG.finalMessage;confetti();$("nextBtn").style.display="none"}
+function confetti(){for(let i=0;i<35;i++){const e=document.createElement("span");e.textContent=["💗","🌸","✨","💕"][i%4];e.style.position="fixed";e.style.left=Math.random()*100+"vw";e.style.top="-30px";e.style.zIndex=10;e.style.fontSize="22px";e.style.pointerEvents="none";e.style.transition="transform 3s linear,opacity 3s";document.body.appendChild(e);requestAnimationFrame(()=>{e.style.transform=`translateY(${window.innerHeight+80}px) rotate(${Math.random()*500}deg)`;e.style.opacity="0"});setTimeout(()=>e.remove(),3200)}}
+function restartJourney(){current=0;renderChapter();$("finalGift").classList.add("hidden");showScreen("journey");window.scrollTo(0,0)}
+function toggleMusic(){const a=$("music");if(!a.src)a.src=CONFIG.musicFile;if(a.paused){a.play().then(()=>{$("musicBtn").textContent="Ⅱ Pause music";musicStarted=true}).catch(()=>{$("musicBtn").textContent="♫ Add music.mp3 first"})}else{a.pause();$("musicBtn").textContent="♫ Play music"}}
+fillCards("compliments",CONFIG.compliments);fillCards("wishes",CONFIG.wishes);
+$("music").src=CONFIG.musicFile;
+makePetals();tick();setInterval(tick,250);
+</script>
+</body>
+</html>
